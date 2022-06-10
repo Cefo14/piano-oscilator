@@ -14,27 +14,22 @@ jobs:
           persist-credentials: false
 
       - name: Install Yarn 🔧
-      - run: sudo npm install -g yarn
+        run: sudo npm install -g yarn
           
       - name: Install Packages 🔧
-        run: |
-          yarn install
+        run: yarn install
       
       - name: Run EsLint 🔧 
-        run: |
-          yarn eslint
+        run: yarn eslint
           
       - name: Run StyleLint 🔧 
-        run: |
-          yarn stylelint
+        run: yarn stylelint
           
       - name: Run Tests 🔧 
-        run: |
-          yarn test
+        run: yarn test
           
       - name: Build 🔧 
-        run: |
-          yarn build
+        run: yarn build
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@releases/v3
