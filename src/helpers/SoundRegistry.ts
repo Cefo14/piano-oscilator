@@ -5,6 +5,7 @@ export class SoundRegistry {
     frecuency: number,
     oscillator: OscillatorNode,
     gain: GainNode,
+    hasStarted: boolean,
   }> = new Map();
 
   private readonly audioContext: AudioContext = new AudioContext();
@@ -30,7 +31,7 @@ export class SoundRegistry {
   register(
     key: string,
     frequencyValue: number,
-  ): void {
+  ) {
     const audioOscillator = this.audioContext.createOscillator();
     const audioGain = this.audioContext.createGain();
 
@@ -42,18 +43,17 @@ export class SoundRegistry {
     audioGain.connect(this.audioContext.destination);
     audioGain.connect(this.audioAnalyser);
 
-    audioOscillator.start();
-
     const newSound = {
       frecuency: frequencyValue,
       oscillator: audioOscillator,
       gain: audioGain,
+      hasStarted: false,
     };
 
     this.sounds.set(key, newSound);
   }
 
-  startSound(key: string): void {
+  async startSound(key: string): Promise<void> {
     const sound = this.sounds.get(key);
     if (!sound) return;
 
@@ -62,6 +62,12 @@ export class SoundRegistry {
 
     const audioGain = sound.gain;
     audioGain.gain.value = this.gain;
+
+    if (!sound.hasStarted) {
+      await this.audioContext.resume();
+      audioOscillator.start();
+      sound.hasStarted = true;
+    }
   }
 
   stopSound(key: string): void {

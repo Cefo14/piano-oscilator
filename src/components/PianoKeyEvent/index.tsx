@@ -19,8 +19,8 @@ export const PianoKeyEvent = ({
 }: PianoKeyEventPropTypes) => {
   const [isActive, setIsActive] = useState(false);
 
-  const startSound = useCallback(() => {
-    if (soundRegistry) soundRegistry.startSound(keyLabel);
+  const startSound = useCallback(async () => {
+    if (soundRegistry) await soundRegistry.startSound(keyLabel);
     setIsActive(true);
   }, [soundRegistry, keyLabel]);
 
@@ -29,9 +29,9 @@ export const PianoKeyEvent = ({
     setIsActive(false);
   }, [soundRegistry, keyLabel]);
 
-  const onKeyDownStartSound = useCallback((e: KeyboardEvent) => {
+  const onKeyDownStartSound = useCallback(async (e: KeyboardEvent) => {
     const key = e.key.toLowerCase();
-    if (key === boardKey) startSound();
+    if (key === boardKey) await startSound();
   }, [boardKey, startSound]);
 
   const onKeyUpStopSound = useCallback((e: KeyboardEvent) => {
