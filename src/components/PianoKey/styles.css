@@ -1,0 +1,24 @@
+.PianoKey__key {
+  border: 4px solid #000;
+  border-radius: 8px;
+}
+
+.PianoKey__key:hover,
+.PianoKey__key--active {
+  border-color: #6ba6ff;
+}
+
+.PianoKey__key--white {
+  width: 88px;
+  height: 316px;
+  background-color: #fff;
+  color: #000;
+}
+
+.PianoKey__key--sharp {
+  width: 48px;
+  height: 172px;
+  z-index: 1;
+  background-color: #000;
+  color: #fff;
+}

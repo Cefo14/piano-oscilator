@@ -1,0 +1,75 @@
+.Piano__container {
+  width: max-content;
+}
+
+.Piano__panel {
+  display: grid;
+  place-content: center;
+  place-items: center;
+  grid-template-columns: 1fr auto;
+  grid-template-areas:
+    'AudioVisualization Knobs'
+    'Title Title';
+  padding: 16px 32px;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+  border: solid 4px #000;
+  border-bottom: none;
+  background-color: #e8122d;
+}
+
+.Piano__audio-visualization-container {
+  grid-area: AudioVisualization;
+  justify-self: center;
+}
+
+.Piano__knobs-container {
+  grid-area: Knobs;
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+  padding: 16px 32px;
+  border: solid 4px #000;
+  border-radius: 16px;
+}
+
+.Piano__knob--hiddeText > div > div > div {
+  display: none;
+}
+
+.Piano__knobs-label {
+  text-align: center;
+  text-transform: capitalize;
+  color: #fff;
+  font-weight: bold;
+  margin-top: 8px;
+}
+
+.Piano__title {
+  grid-area: Title;
+  font-size: 36px;
+  font-family: 'Long Cang', cursive;
+  font-weight: bold;
+  text-align: center;
+  color: #fff;
+}
+
+.Piano__keys-container {
+  position: relative;
+  display: inline-block;
+  width: max-content;
+}
+
+.Piano__key--sharp {
+  position: absolute;
+  margin-left: -24px;
+}
+
+.Piano__key-label {
+  text-transform: uppercase;
+}
+
+.Piano__key-boardKey {
+  text-transform: uppercase;
+  font-weight: bold;
+}
